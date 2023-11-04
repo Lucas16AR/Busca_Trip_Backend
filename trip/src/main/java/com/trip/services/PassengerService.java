@@ -4,15 +4,14 @@ import com.trip.repositories.PassengerRepository;
 import com.trip.models.PassengerModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
 public class PassengerService {
 
-    private final PassengerRepository passengerRepository;
-
     @Autowired
+    private PassengerRepository passengerRepository;
+
     public PassengerService(PassengerRepository passengerRepository) {
         this.passengerRepository = passengerRepository;
     }
@@ -34,6 +33,6 @@ public class PassengerService {
     }
 
     public List<PassengerModel> getAllPassengers() {
-        return passengerRepository.findAll();
+        return (List<PassengerModel>) passengerRepository.findAll();
     }
 }

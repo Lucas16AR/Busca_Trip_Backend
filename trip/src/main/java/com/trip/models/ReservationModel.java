@@ -1,9 +1,5 @@
 package com.trip.models;
 
-import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,6 +10,10 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "reservations")
@@ -30,6 +30,10 @@ public class ReservationModel implements Serializable {
     @JoinColumn(name = "booking_id")
     private BookingModel booking;
 
+    @ManyToOne
+    @JoinColumn(name = "trip_id")
+    private TripModel trip;
+
     @Column(name = "status")
     private String status;
 
@@ -40,24 +44,27 @@ public class ReservationModel implements Serializable {
     private int price;
 
     @ManyToMany
-    @JoinTable(name = "reservation_passenger",
-               joinColumns = @JoinColumn(name = "reservation_id"),
-               inverseJoinColumns = @JoinColumn(name = "passenger_id"))
+    @JoinTable(
+        name = "reservation_passenger",
+        joinColumns = @JoinColumn(name = "reservation_id"),
+        inverseJoinColumns = @JoinColumn(name = "passenger_id")
+    )
     private List<PassengerModel> passengers;
 
     public ReservationModel() {
-        // Empty constructor required by JPA
+        // Constructor vacío requerido por JPA
     }
 
-    public ReservationModel(UserModel user, BookingModel booking, String status, Date date, int price) {
+    public ReservationModel(UserModel user, BookingModel booking, TripModel trip, String status, Date date, int price) {
         this.user = user;
         this.booking = booking;
+        this.trip = trip;
         this.status = status;
         this.date = date;
         this.price = price;
     }
 
-    // Getters and Setters...
+    // Getters y Setters...
 
     public int getId() {
         return id;
@@ -81,6 +88,14 @@ public class ReservationModel implements Serializable {
 
     public void setBooking(BookingModel booking) {
         this.booking = booking;
+    }
+
+    public TripModel getTrip() {
+        return trip;
+    }
+
+    public void setTrip(TripModel trip) {
+        this.trip = trip;
     }
 
     public String getStatus() {

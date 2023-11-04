@@ -10,9 +10,9 @@ import java.util.List;
 @Service
 public class TripService {
 
-    private final TripRepository tripRepository;
-
     @Autowired
+    private TripRepository tripRepository;
+
     public TripService(TripRepository tripRepository) {
         this.tripRepository = tripRepository;
     }
@@ -34,7 +34,7 @@ public class TripService {
     }
 
     public List<TripModel> getAllTrips() {
-        return tripRepository.findAll();
+        return (List<TripModel>) tripRepository.findAll();
     }
 
 }

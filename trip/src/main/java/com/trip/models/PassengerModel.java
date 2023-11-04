@@ -1,16 +1,15 @@
 package com.trip.models;
 
-import javax.persistence.*;
-import java.util.List;
-import java.io.Serializable;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Column;
+import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
+import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "passengers")
@@ -31,13 +30,14 @@ public class PassengerModel implements Serializable {
     @Column(name = "gender")
     private String gender;
 
-    @OneToMany(mappedBy = "passenger")
+    @OneToMany(mappedBy = "passengers")
     private List<BookingModel> bookings;
 
     @Column(name = "is_admin")
     private boolean isAdmin;
 
     public PassengerModel() {
+        // Empty constructor required by JPA
     }
 
     public PassengerModel(String name, String lastName, int idNumber, String gender, boolean isAdmin) {
@@ -102,7 +102,7 @@ public class PassengerModel implements Serializable {
         return isAdmin;
     }
 
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
+    public void setAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
 }

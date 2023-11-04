@@ -1,12 +1,21 @@
 package com.trip.controllers;
 
+import com.trip.models.BookingModel;
+import com.trip.services.BookingService;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import com.trip.models.BookingModel;
-import com.trip.services.BookingService;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 
 
 @RestController
@@ -36,7 +45,7 @@ public class BookingController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteBooking(@PathVariable("id") Long id) {
-        bookingService.deleteById(id);
+        bookingService.deleteBooking(id);
         return new ResponseEntity<>("Booking deleted successfully", HttpStatus.OK);
     }
 }

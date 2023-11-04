@@ -10,12 +10,10 @@ import com.trip.models.VehicleModel;
 import com.trip.repositories.VehicleRepository;
 
 @RestController
-@RequestMapping(VehicleController.VEHICLE_URL)
+@RequestMapping("/vehicle")
 public class VehicleController {
    
-    private static final String VEHICLE_URL = "/vehicle";
-   
-    private final VehicleRepository vehicleRepository;
+    private VehicleRepository vehicleRepository;
 
     @Autowired
     public VehicleController(VehicleRepository vehicleRepository) {

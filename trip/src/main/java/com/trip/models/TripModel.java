@@ -1,19 +1,19 @@
 package com.trip.models;
 
-import javax.persistence.*;
-import java.util.Date;
-import java.sql.Time;
-import java.util.List;
-import java.io.Serializable;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Column;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
+import java.io.Serializable;
+import java.sql.Time;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "trips")

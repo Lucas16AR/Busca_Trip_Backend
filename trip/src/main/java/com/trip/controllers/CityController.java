@@ -31,7 +31,7 @@ public class CityController {
 
     @PutMapping
     public ResponseEntity<CityModel> updateCity(@Valid @RequestBody CityModel city) {
-        CityModel updatedCity = cityService.update(city);
+        CityModel updatedCity = cityService.updateCity(city);
         return new ResponseEntity<>(updatedCity, HttpStatus.OK);
     }
 

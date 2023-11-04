@@ -4,15 +4,14 @@ import com.trip.repositories.ReservationRepository;
 import com.trip.models.ReservationModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
 public class ReservationService {
 
-    private final ReservationRepository reservationRepository;
-
     @Autowired
+    private ReservationRepository reservationRepository;
+    
     public ReservationService(ReservationRepository reservationRepository) {
         this.reservationRepository = reservationRepository;
     }
@@ -34,7 +33,7 @@ public class ReservationService {
     }
 
     public List<ReservationModel> getAllReservations() {
-        return reservationRepository.findAll();
+        return (List<ReservationModel>) reservationRepository.findAll();
     }
 
 }

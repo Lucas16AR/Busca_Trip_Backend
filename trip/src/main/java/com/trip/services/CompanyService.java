@@ -4,15 +4,14 @@ import com.trip.repositories.CompanyRepository;
 import com.trip.models.CompanyModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
 public class CompanyService {
-
-    private final CompanyRepository companyRepository;
-
+ 
     @Autowired
+    private CompanyRepository companyRepository;
+   
     public CompanyService(CompanyRepository companyRepository) {
         this.companyRepository = companyRepository;
     }
@@ -34,6 +33,6 @@ public class CompanyService {
     }
 
     public List<CompanyModel> getAllCompanies() {
-        return companyRepository.findAll();
+        return (List<CompanyModel>) companyRepository.findAll();
     }
 }

@@ -4,15 +4,16 @@ import com.trip.repositories.CityRepository;
 import com.trip.models.CityModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+
+import javax.validation.Valid;
 
 @Service
 public class CityService {
 
-    private final CityRepository cityRepository;
-
     @Autowired
+    private CityRepository cityRepository;
+
     public CityService(CityRepository cityRepository) {
         this.cityRepository = cityRepository;
     }
@@ -34,6 +35,17 @@ public class CityService {
     }
 
     public List<CityModel> getAllCities() {
-        return cityRepository.findAll();
+        return (List<CityModel>) cityRepository.findAll();
+    }
+
+    public List<CityModel> findAll() {
+        return null;
+    }
+
+    public CityModel save(@Valid CityModel city) {
+        return null;
+    }
+
+    public void deleteById(Long id) {
     }
 }

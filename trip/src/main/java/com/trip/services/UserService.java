@@ -4,15 +4,14 @@ import com.trip.repositories.UserRepository;
 import com.trip.models.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
 public class UserService {
 
-    private final UserRepository userRepository;
-
     @Autowired
+    private UserRepository userRepository;
+
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -34,7 +33,7 @@ public class UserService {
     }
 
     public List<UserModel> getAllUsers() {
-        return userRepository.findAll();
+        return (List<UserModel>) userRepository.findAll();
     }
 
 }

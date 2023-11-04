@@ -1,18 +1,18 @@
 package com.trip.models;
 
-import javax.persistence.*;
-import java.util.List;
-import java.io.Serializable;
-
 import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
+import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "bookings")
@@ -54,9 +54,9 @@ public class BookingModel implements Serializable {
         // Empty constructor required by JPA
     }
 
-    public BookingModel(CityModel origin_city_id, CityModel destination_city_id, CompanyModel company, TripModel trip) {
-        this.originCity = origin_city_id;
-        this.destinationCity = destination_city_id;
+    public BookingModel(CityModel originCity, CityModel destinationCity, CompanyModel company, TripModel trip) {
+        this.originCity = originCity;
+        this.destinationCity = destinationCity;
         this.company = company;
         this.trip = trip;
     }

@@ -1,18 +1,19 @@
 package com.trip.services;
 
-import com.trip.repositories.BookingRepository;
 import com.trip.models.BookingModel;
+import com.trip.repositories.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+
+import javax.validation.Valid;
 
 @Service
 public class BookingService {
 
-    private final BookingRepository bookingRepository;
-
     @Autowired
+    private BookingRepository bookingRepository;
+    
     public BookingService(BookingRepository bookingRepository) {
         this.bookingRepository = bookingRepository;
     }
@@ -34,6 +35,18 @@ public class BookingService {
     }
 
     public List<BookingModel> getAllBookings() {
-        return bookingRepository.findAll();
+        return (List<BookingModel>) bookingRepository.findAll();
+    }
+
+    public List<BookingModel> findAll() {
+        return null;
+    }
+
+    public BookingModel update(@Valid BookingModel booking) {
+        return null;
+    }
+
+    public BookingModel save(@Valid BookingModel booking) {
+        return null;
     }
 }

@@ -8,24 +8,24 @@
 		<version>3.1.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>ticket</groupId>
-	<artifactId>bus</artifactId>
+	<groupId>com</groupId>
+	<artifactId>trip</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Ticket Bus</name>
-	<description>Ticket Bus Project</description>
+	<name>trip</name>
+	<description>Busca Trip</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
-
     	<dependency>
     		<groupId>org.springframework.boot</groupId>
     		<artifactId>spring-boot-starter-actuator</artifactId>
+			<version>3.1.5</version>
     	</dependency>
-
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-web</artifactId>
+		    <version>3.1.5</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -35,6 +35,7 @@
 		<dependency>
     		<groupId>org.springframework.boot</groupId>
     		<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<version>3.1.5</version>
 		</dependency>
 		<dependency>
     		<groupId>mysql</groupId>
@@ -51,11 +52,20 @@
             <artifactId>javax.persistence-api</artifactId>
             <version>2.2</version>
         </dependency>
-		<!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui -->
 		<dependency>
 		    <groupId>org.springdoc</groupId>
 		    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
 		    <version>2.1.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>javax.validation</groupId>
+		    <artifactId>validation-api</artifactId>
+		    <version>2.0.1.Final</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-validator</artifactId>
+		    <version>8.0.1.Final</version>
 		</dependency>
     </dependencies>
 	<build>

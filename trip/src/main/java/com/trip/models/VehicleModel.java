@@ -1,18 +1,14 @@
 package com.trip.models;
 
-import javax.persistence.*;
-import java.util.List;
-import java.io.Serializable;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Column;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
+import java.io.Serializable;
 
 @Entity
 @Table(name = "vehicles")
@@ -21,26 +17,25 @@ public class VehicleModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "brand")
+    private String brand;
 
-    @Column(name = "seats")
-    private int seats;
+    @Column(name = "model")
+    private String model;
 
-    @Column(name = "type")
-    private String type;
+    @Column(name = "capacity")
+    private int capacity;
 
     @ManyToOne
-    @JoinColumn(name = "company_id")
     private CompanyModel company;
 
-    @OneToMany(mappedBy = "vehicle")
-    private List<TripModel> trips;
-
-    @OneToMany(mappedBy = "vehicle")
-    private List<BookingModel> bookings;
-
     public VehicleModel() {
+    }
+
+    public VehicleModel(String brand, String model, int capacity) {
+        this.brand = brand;
+        this.model = model;
+        this.capacity = capacity;
     }
 
     // Getters and Setters...
@@ -53,28 +48,28 @@ public class VehicleModel implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
-    public int getSeats() {
-        return seats;
+    public String getModel() {
+        return model;
     }
 
-    public void setSeats(int seats) {
-        this.seats = seats;
+    public void setModel(String model) {
+        this.model = model;
     }
 
-    public String getType() {
-        return type;
+    public int getCapacity() {
+        return capacity;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 
     public CompanyModel getCompany() {
@@ -83,21 +78,5 @@ public class VehicleModel implements Serializable {
 
     public void setCompany(CompanyModel company) {
         this.company = company;
-    }
-
-    public List<TripModel> getTrips() {
-        return trips;
-    }
-
-    public void setTrips(List<TripModel> trips) {
-        this.trips = trips;
-    }
-
-    public List<BookingModel> getBookings() {
-        return bookings;
-    }
-
-    public void setBookings(List<BookingModel> bookings) {
-        this.bookings = bookings;
     }
 }
