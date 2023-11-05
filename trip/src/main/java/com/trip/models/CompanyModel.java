@@ -21,8 +21,8 @@ public class CompanyModel implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "company")
-    private List<VehicleModel> vehicles;
+    /*@OneToMany(mappedBy = "company")
+    private List<VehicleModel> vehicles;*/
 
     public CompanyModel() {
     }
@@ -49,11 +49,11 @@ public class CompanyModel implements Serializable {
         this.name = name;
     }
 
-    public List<VehicleModel> getVehicles() {
+    /*public List<VehicleModel> getVehicles() {
         return vehicles;
     }
 
     public void setVehicles(List<VehicleModel> vehicles) {
         this.vehicles = vehicles;
-    }
+    }*/
 }

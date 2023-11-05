@@ -26,8 +26,8 @@ public class VehicleModel implements Serializable {
     @Column(name = "capacity")
     private int capacity;
 
-    @ManyToOne
-    private CompanyModel company;
+    /*@ManyToOne
+    "private CompanyModel company;"*/
 
     public VehicleModel() {
     }
@@ -72,11 +72,11 @@ public class VehicleModel implements Serializable {
         this.capacity = capacity;
     }
 
-    public CompanyModel getCompany() {
+    /*public CompanyModel getCompany() {
         return company;
     }
 
     public void setCompany(CompanyModel company) {
         this.company = company;
-    }
+    }*/
 }
