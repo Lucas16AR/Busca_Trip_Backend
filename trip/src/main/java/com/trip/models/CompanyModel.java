@@ -1,43 +1,40 @@
 package com.trip.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "companies")
+@Table(name = "company")
 public class CompanyModel implements Serializable {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+
+    // @ManyToOne(fetch = FetchType.LAZY)
+    // @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne
+    @JoinColumn(name = "vehicle")
+    private List<Object> vehicles;
 
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "company")
-    private List<VehicleModel> vehicles;
-
-    public CompanyModel() {
-    }
-
-    public CompanyModel(String name) {
-        this.name = name;
-    }
-
-    // Getters and Setters...
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -49,11 +46,5 @@ public class CompanyModel implements Serializable {
         this.name = name;
     }
 
-    public List<VehicleModel> getVehicles() {
-        return vehicles;
-    }
-
-    public void setVehicles(List<VehicleModel> vehicles) {
-        this.vehicles = vehicles;
-    }
 }
+    

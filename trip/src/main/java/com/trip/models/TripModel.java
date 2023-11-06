@@ -1,70 +1,81 @@
 package com.trip.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-
+import javax.persistence.*;
+// import javax.persistence.Entity;
+// import javax.persistence.GenerationType;
+// import javax.persistence.GeneratedValue;
+// import javax.persistence.Table;
+// import javax.persistence.Id;
+// import javax.persistence.JoinColumn;
+// import javax.persistence.ManyToOne;
+// import javax.persistence.Column;
+import com.trip.models.UserModel;
+import com.trip.models.VehicleModel;
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.Date;
-import java.util.List;
 
 @Entity
-@Table(name = "trips")
+@Table(name = "trip")
 public class TripModel implements Serializable {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+
+    // @Column(name = "client_id")
+    // private Integer client_id;
+
+    // @Column(name = "host_id")
+    // private Integer host_id;
+
+    // @Column(name = "house_id")
+    // private Integer house_id;
 
     @Column(name = "date")
     private Date date;
 
-    @ManyToOne
-    @JoinColumn(name = "origin_city_id")
-    private CityModel originCity;
+    @OneToMany
+    @JoinColumn(name = "origin_city")
+    private CityModel origin_city;
+
+    @OneToMany
+    @JoinColumn(name = "destination_city")
+    private CityModel destination_city;
 
     @ManyToOne
-    @JoinColumn(name = "destination_city_id")
-    private CityModel destinationCity;
-
-    @Column(name = "trip_time")
-    private Time tripTime;
-
-    @Column(name = "distance")
-    private int distance;
+    @JoinColumn(name = "user")
+    private UserModel user;
 
     @ManyToOne
-    @JoinColumn(name = "vehicle_id")
+    @JoinColumn(name = "vehicle")
     private VehicleModel vehicle;
 
-    @ManyToOne
-    @JoinColumn(name = "company_id")
-    private CompanyModel company;
-
-    @OneToMany(mappedBy = "trip")
-    private List<BookingModel> bookings;
-
-    @OneToMany(mappedBy = "trip")
-    private List<ReservationModel> reservations;
-
-    public TripModel() {
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    // Getters and Setters...
+    public void setVehicle(VehicleModel vehicle) {
+        this.vehicle = vehicle;
+    }
 
-    public int getId() {
+    public VehicleModel getVehicle() {
+        return vehicle;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public UserModel getUser() {
+        return user;
     }
+
+    public void setUser(UserModel user) {
+        this.user = user;
+    }
+
+
 
     public Date getDate() {
         return date;
@@ -74,67 +85,19 @@ public class TripModel implements Serializable {
         this.date = date;
     }
 
-    public CityModel getOriginCity() {
-        return originCity;
+    public CityModel getOrigin_city() {
+        return origin_city;
     }
 
-    public void setOriginCity(CityModel originCity) {
-        this.originCity = originCity;
+    public void setOrigin_city(CityModel origin_city) {
+        this.origin_city = origin_city;
     }
 
-    public CityModel getDestinationCity() {
-        return destinationCity;
+    public CityModel getDestination_city() {
+        return destination_city;
+    }
+    public void setDestination_city(CityModel destination_city) {
+        this.destination_city = destination_city;
     }
 
-    public void setDestinationCity(CityModel destinationCity) {
-        this.destinationCity = destinationCity;
-    }
-
-    public Time getTripTime() {
-        return tripTime;
-    }
-
-    public void setTripTime(Time tripTime) {
-        this.tripTime = tripTime;
-    }
-
-    public int getDistance() {
-        return distance;
-    }
-
-    public void setDistance(int distance) {
-        this.distance = distance;
-    }
-
-    public VehicleModel getVehicle() {
-        return vehicle;
-    }
-
-    public void setVehicle(VehicleModel vehicle) {
-        this.vehicle = vehicle;
-    }
-
-    public CompanyModel getCompany() {
-        return company;
-    }
-
-    public void setCompany(CompanyModel company) {
-        this.company = company;
-    }
-
-    public List<BookingModel> getBookings() {
-        return bookings;
-    }
-
-    public void setBookings(List<BookingModel> bookings) {
-        this.bookings = bookings;
-    }
-
-    public List<ReservationModel> getReservations() {
-        return reservations;
-    }
-
-    public void setReservations(List<ReservationModel> reservations) {
-        this.reservations = reservations;
-    }
 }

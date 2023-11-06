@@ -1,68 +1,59 @@
 package com.trip.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-
-import java.io.Serializable;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.apache.catalina.manager.host.HTMLHostManagerServlet;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
+import javax.persistence.OneToMany;
+
+import javax.persistence.CascadeType;
 
 @Entity
 @Table(name = "users")
-public class UserModel implements Serializable {
+public class UserModel {
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "name")
     private String name;
 
-    @Column(name = "last_name")
-    private String lastName;
+    @Column(name = "lastname")
+    private String lastname;
 
-    @Column(name = "password")
-    private String password;
+    @Column(name = "age")
+    private Integer age;
 
     @Column(name = "email")
     private String email;
 
-    @OneToMany(mappedBy = "user")
-    private List<BookingModel> bookings;
+    @Column(name = "phone_number")
+    private String phoneNumber;
 
-    @OneToMany(mappedBy = "user")
-    private List<ReservationModel> reservations;
+    @Column(name = "Genere")
+    private Boolean genere;
 
-    @Column(name = "is_admin")
-    private boolean isAdmin;
+    @Column(name = "password")
+    private String password;
 
-    public UserModel() {
-        // Empty constructor required by JPA
-    }
-
-    public UserModel(String name, String lastName, String password, String email, boolean isAdmin) {
-        this.name = name;
-        this.lastName = lastName;
-        this.password = password;
-        this.email = email;
-        this.isAdmin = isAdmin;
-    }
-
-    // Getters and Setters...
-
-    // Getter and Setter for id
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    // Getter and Setter for name
     public String getName() {
         return name;
     }
@@ -71,25 +62,22 @@ public class UserModel implements Serializable {
         this.name = name;
     }
 
-    // Getter and Setter for lastName
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
-    // Getter and Setter for password
-    public String getPassword() {
-        return password;
+    public Integer getAge() {
+        return age;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
-    // Getter and Setter for email
     public String getEmail() {
         return email;
     }
@@ -98,30 +86,29 @@ public class UserModel implements Serializable {
         this.email = email;
     }
 
-    // Getter and Setter for bookings
-    public List<BookingModel> getBookings() {
-        return bookings;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setBookings(List<BookingModel> bookings) {
-        this.bookings = bookings;
+    public void setPhoneNumber(String phone_number) {
+        this.phoneNumber = phone_number;
     }
 
-    // Getter and Setter for reservations
-    public List<ReservationModel> getReservations() {
-        return reservations;
+    public Boolean getGenere() {
+        return genere;
     }
 
-    public void setReservations(List<ReservationModel> reservations) {
-        this.reservations = reservations;
+    public void setGenere(Boolean genere) {
+        this.genere = genere;
     }
 
-    // Getter and Setter for isAdmin
-    public boolean isAdmin() {
-        return isAdmin;
+    
+    public String getPassword() {
+        return password;
     }
 
-    public void setAdmin(boolean isAdmin) {
-        this.isAdmin = isAdmin;
+    public void setPassword(String password) {
+        this.password = password;
     }
+
 }
