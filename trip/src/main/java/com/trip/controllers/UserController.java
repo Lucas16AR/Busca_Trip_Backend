@@ -20,24 +20,29 @@ public class UserController {
     @GetMapping
     public ResponseEntity<List<UserModel>> getAllUsers() {
         List<UserModel> users = (List<UserModel>) userRepository.findAll();
-        return new ResponseEntity<>(users, HttpStatus.OK);
+        return ResponseEntity.ok(users);
     }
 
     @PostMapping
-    public ResponseEntity<UserModel> addUser(@Valid @RequestBody UserModel user) {
+    public ResponseEntity<UserModel> createUser(@Valid @RequestBody UserModel user) {
         UserModel savedUser = userRepository.save(user);
-        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
     }
 
     @PutMapping
     public ResponseEntity<UserModel> updateUser(@Valid @RequestBody UserModel user) {
         UserModel updatedUser = userRepository.save(user);
-        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+        return ResponseEntity.ok(updatedUser);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable("id") Long id) {
         userRepository.deleteById(id);
         return ResponseEntity.ok("User deleted successfully");
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> handleException(Exception ex) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred");
     }
 }
