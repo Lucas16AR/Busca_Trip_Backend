@@ -1,16 +1,19 @@
 package com.trip.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import java.io.Serializable;
+import javax.persistence.*;
 import java.util.List;
+import java.io.Serializable;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
+// import jakarta.persistence.ManyToMany;
+
+// import java.io.Serializable;
+// import java.util.List;
 
 @Entity
 @Table(name = "company")
@@ -23,7 +26,7 @@ public class CompanyModel implements Serializable {
 
     // @ManyToOne(fetch = FetchType.LAZY)
     // @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @ManyToOne
+    @OneToMany
     @JoinColumn(name = "vehicle")
     private List<Object> vehicles;
 

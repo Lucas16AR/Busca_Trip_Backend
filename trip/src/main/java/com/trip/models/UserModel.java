@@ -1,24 +1,21 @@
 package com.trip.models;
 
-import java.util.List;
+//import javax.persistence.*;
+//import java.util.List;
+import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 
-import org.apache.catalina.manager.host.HTMLHostManagerServlet;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-
-import javax.persistence.OneToMany;
-
-import javax.persistence.CascadeType;
+import jakarta.persistence.Column;
+// import jakarta.persistence.ManyToMany;
 
 @Entity
 @Table(name = "users")
-public class UserModel {
+public class UserModel implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,8 +37,8 @@ public class UserModel {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name = "Genere")
-    private Boolean genere;
+    @Column(name = "Gender", columnDefinition = "VARCHAR(255)")
+    private String gender;
 
     @Column(name = "password")
     private String password;
@@ -94,12 +91,12 @@ public class UserModel {
         this.phoneNumber = phone_number;
     }
 
-    public Boolean getGenere() {
-        return genere;
+    public String getGender() {
+        return gender;
     }
 
-    public void setGenere(Boolean genere) {
-        this.genere = genere;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     
