@@ -12,10 +12,6 @@ public class VehicleService {
     @Autowired
     private VehicleRepository vehicleRepository;
     
-    public VehicleService(VehicleRepository vehicleRepository) {
-        this.vehicleRepository = vehicleRepository;
-    }
-
     public VehicleModel addVehicle(VehicleModel vehicle) {
         return vehicleRepository.save(vehicle);
     }

@@ -68,6 +68,11 @@
         <version>2.12.5</version> <!-- Utiliza la versión más reciente de Jackson Databind -->
     	</dependency>	
 		<dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
+		<dependency>
 		    <groupId>org.hibernate</groupId>
 		    <artifactId>hibernate-validator</artifactId>
 		    <version>8.0.1.Final</version>

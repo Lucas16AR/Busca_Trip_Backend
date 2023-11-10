@@ -1,12 +1,12 @@
 package com.trip.repositories;
-
 import com.trip.models.CityModel;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import jakarta.transaction.Transactional;
+
 @Repository
-public interface CityRepository extends CrudRepository<CityModel, Long> {
-    // CityModel findById(long id);
-    // CityModel updateCity(@Valid CityModel city);
+@Transactional
+public interface CityRepository extends JpaRepository<CityModel, Long> {
 }

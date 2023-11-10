@@ -5,14 +5,19 @@ import java.io.Serializable;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import lombok.Data;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
 import java.util.Date;
+import java.util.List;
+
 
 @Entity
-@Table(name = "trip")
+@Data
+@Table(name = "trips")
 public class TripModel implements Serializable {
 
     @Id
@@ -20,19 +25,11 @@ public class TripModel implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    // @Column(name = "client_id")
-    // private Integer client_id;
-
-    // @Column(name = "host_id")
-    // private Integer host_id;
-
-    // @Column(name = "house_id")
-    // private Integer house_id;
-
     @Column(name = "date")
     private Date date;
 
-
+    // @OneToMany(mappedBy = "tripModel")
+    // private List<Object> users;
 
     @ManyToOne
     @JoinColumn(name = "user")
@@ -42,38 +39,25 @@ public class TripModel implements Serializable {
     @JoinColumn(name = "vehicle")
     private VehicleModel vehicle;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @ManyToOne
+    @JoinColumn(name = "origin_city")
+    private CityModel origin_city;
 
-    // public void setVehicle(VehicleModel vehicle) {
-    //     this.vehicle = vehicle;
-    // }
+    //@JsonIdentityReference(alwaysAsId = true)
+    @ManyToOne
+    @JoinColumn(name = "destination_city")
+    private CityModel destination_city;
 
-    // public VehicleModel getVehicle() {
-    //     return vehicle;
-    // }
+    @Column(name = "price")
+    private Double price;
 
-    public Long getId() {
-        return id;
-    }
+    @Column(name = "available_seats")
+    private Integer available_seats;
 
-    public UserModel getUser() {
-        return user;
-    }
+    @Column(name = "departure_time")
+    private String departure_time;
 
-    public void setUser(UserModel user) {
-        this.user = user;
-    }
-
-
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
+    @Column(name = "arrival_time")
+    private String arrival_time;
+   
 }
