@@ -26,8 +26,6 @@ public class VehicleController {
             return ResponseEntity.status(HttpStatus.CREATED).body("Vehicle added successfully");
         }
 
- 
-
     @Autowired
     private VehicleRepository vehicleRepository;
 
