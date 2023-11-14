@@ -38,6 +38,7 @@ public class AuthService {
             .name(request.getFirstname())
             .lastname(request.getLastname())
             .email(request.getEmail())
+            .gender(request.getGender())
             .role(Role.USER)
             .build();
 
