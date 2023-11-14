@@ -4,6 +4,7 @@ import com.trip.repositories.CompanyRepository;
 import com.trip.repositories.VehicleRepository;
 import com.trip.models.CompanyModel;
 import com.trip.models.VehicleModel;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
