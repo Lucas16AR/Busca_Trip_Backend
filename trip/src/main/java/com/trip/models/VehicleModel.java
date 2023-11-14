@@ -18,7 +18,7 @@ import jakarta.persistence.Column;
 @Entity
 @Data
 @Table(name = "vehicles")
-//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class VehicleModel implements Serializable {
 
     @Id
@@ -47,6 +47,7 @@ public class VehicleModel implements Serializable {
     //@JsonIdentityReference(alwaysAsId = true)
 
     @ManyToOne
-    @JoinColumn(name = "company")
+    @JoinColumn(name = "company_id", columnDefinition = "1022")
+    @JsonBackReference
     private CompanyModel company;
 }

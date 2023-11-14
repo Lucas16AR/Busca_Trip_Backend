@@ -1,6 +1,10 @@
 package com.trip.models;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import java.util.List;
 import java.io.Serializable;
 
@@ -19,6 +23,7 @@ import jakarta.persistence.Column;
 @Entity
 @Table(name = "companies")
 @Data
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class CompanyModel implements Serializable {
 
     @Id
@@ -26,9 +31,11 @@ public class CompanyModel implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @OneToMany
-    @JoinColumn(name = "vehicle")
-    private List<Object> vehicles;
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //@JsonManagedReference
+    @Column(length = 255) // Ajusta el tamaño según tus necesidades
+    private List<VehicleModel> vehicles;
+
 
     @Column(name = "name")
     private String name;

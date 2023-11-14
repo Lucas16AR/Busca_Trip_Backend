@@ -10,9 +10,9 @@ import java.util.List;
 @Service
 public class TripService {
 
-    @Autowired
     private TripRepository tripRepository;
 
+    @Autowired
     public TripService(TripRepository tripRepository) {
         this.tripRepository = tripRepository;
     }
@@ -21,8 +21,14 @@ public class TripService {
         return tripRepository.save(trip);
     }
 
-    public TripModel updateTrip(TripModel trip) {
-        return tripRepository.save(trip);
+    public TripModel updateTrip(Long id, TripModel trip) {
+        TripModel existingTrip = tripRepository.findById(id).orElse(null);
+        if (existingTrip != null) {
+            trip.setId(id);
+            return tripRepository.save(trip);
+        } else {
+            return null;
+        }
     }
 
     public void deleteTrip(Long id) {
@@ -36,5 +42,4 @@ public class TripService {
     public List<TripModel> getAllTrips() {
         return (List<TripModel>) tripRepository.findAll();
     }
-
 }

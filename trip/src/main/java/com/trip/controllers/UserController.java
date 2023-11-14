@@ -1,43 +1,74 @@
 package com.trip.controllers;
 
+import com.trip.models.UserModel;
+import com.trip.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.trip.models.UserModel;
-import com.trip.repositories.UserRepository;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
+    private UserService userService;
+
     @Autowired
-    private UserRepository userRepository;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping
-    public ResponseEntity<List<UserModel>> getAllUsers() {
-        List<UserModel> users = (List<UserModel>) userRepository.findAll();
-        return new ResponseEntity<>(users, HttpStatus.OK);
+    public List<UserModel> getAllUsers() {
+        return userService.getAllUsers();
     }
 
     @PostMapping
-    public ResponseEntity<UserModel> addUser(@Valid @RequestBody UserModel user) {
-        UserModel savedUser = userRepository.save(user);
-        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
+    public ResponseEntity<String> addUser(@RequestBody UserModel user) {
+        UserModel savedUser = userService.addUser(user);
+        if (savedUser != null) {
+            return ResponseEntity.status(201).body("User added successfully with ID: " + savedUser.getId());
+        } else {
+            return ResponseEntity.status(400).body("Failed to add user.");
+        }
     }
 
-    @PutMapping
-    public ResponseEntity<UserModel> updateUser(@Valid @RequestBody UserModel user) {
-        UserModel updatedUser = userRepository.save(user);
-        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+    @PutMapping("/{id}")
+    public ResponseEntity<String> updateUser(@PathVariable("id") Long id, @RequestBody UserModel user) {
+        UserModel existingUser = userService.getUser(id);
+
+        if (existingUser != null) {
+            user.setId(id);
+            userService.updateUser(id, user);
+            return ResponseEntity.ok("User updated successfully");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable("id") Long id) {
-        userRepository.deleteById(id);
-        return ResponseEntity.ok("User deleted successfully");
+        UserModel existingUser = userService.getUser(id);
+
+        if (existingUser != null) {
+            userService.deleteUser(id);
+            return ResponseEntity.ok("User deleted successfully");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UserModel> getUser(@PathVariable("id") Long id) {
+        UserModel user = userService.getUser(id);
+        if (user != null) {
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
+
+

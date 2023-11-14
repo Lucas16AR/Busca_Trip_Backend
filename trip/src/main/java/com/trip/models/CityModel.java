@@ -1,7 +1,4 @@
 package com.trip.models;
-
-import javax.persistence.*;
-import java.util.List;
 import java.io.Serializable;
 
 import jakarta.persistence.Entity;
@@ -28,6 +25,10 @@ public class CityModel implements Serializable {
 
     @Column(name = "name")
     private String name;
+
+    public boolean isPresent() {
+        return false;
+    }
 
     
 }
