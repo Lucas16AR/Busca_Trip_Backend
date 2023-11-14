@@ -1,8 +1,9 @@
 package com.trip.models;
 
-import javax.persistence.*;
+// import javax.persistence.*;
 import java.io.Serializable;
 
+import jakarta.persistence.*;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -26,9 +27,6 @@ public class TripModel implements Serializable {
     @Column(name = "date")
     private Date date;
 
-    // @OneToMany(mappedBy = "tripModel")
-    // private List<Object> users;
-
     @ManyToOne
     @JoinColumn(name = "user")
     private UserModel user;
@@ -41,7 +39,6 @@ public class TripModel implements Serializable {
     @JoinColumn(name = "origin_city")
     private CityModel origin_city;
 
-    //@JsonIdentityReference(alwaysAsId = true)
     @ManyToOne
     @JoinColumn(name = "destination_city")
     private CityModel destination_city;

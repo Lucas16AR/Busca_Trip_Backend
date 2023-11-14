@@ -18,22 +18,13 @@ import jakarta.persistence.Column;
 @Entity
 @Data
 @Table(name = "vehicles")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+// @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class VehicleModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-
-    // @ManyToOne(fetch = FetchType.LAZY)
-    // @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    // @ManyToOne
-    // @JoinColumn(name = "trip")
-    // private TripModel trip;
-
-    // @Column(name = "name")
-    // private String name;
 
     @Column(name = "brand")
     private String brand;
@@ -44,10 +35,7 @@ public class VehicleModel implements Serializable {
     @Column(name = "capacity")
     private Integer capacity;
 
-    //@JsonIdentityReference(alwaysAsId = true)
-
     @ManyToOne
-    @JoinColumn(name = "company_id", columnDefinition = "1022")
-    @JsonBackReference
+    @JoinColumn(name = "company_id")
     private CompanyModel company;
 }

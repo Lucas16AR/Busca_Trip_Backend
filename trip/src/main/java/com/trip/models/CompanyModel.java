@@ -23,19 +23,13 @@ import jakarta.persistence.Column;
 @Entity
 @Table(name = "companies")
 @Data
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+// @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class CompanyModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-
-    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    //@JsonManagedReference
-    @Column(length = 255) // Ajusta el tamaño según tus necesidades
-    private List<VehicleModel> vehicles;
-
 
     @Column(name = "name")
     private String name;
