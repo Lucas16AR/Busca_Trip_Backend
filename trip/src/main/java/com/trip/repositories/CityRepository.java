@@ -9,4 +9,5 @@ import jakarta.transaction.Transactional;
 @Repository
 @Transactional
 public interface CityRepository extends JpaRepository<CityModel, Long> {
+    CityModel findByName(String name);
 }

@@ -1,11 +1,7 @@
 package com.trip.models;
 
-import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-import java.util.List;
 import java.io.Serializable;
 
 import jakarta.persistence.Entity;
