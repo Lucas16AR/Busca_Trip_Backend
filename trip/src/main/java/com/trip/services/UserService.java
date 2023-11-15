@@ -32,6 +32,10 @@ public class UserService {
             UserModel existingUser = optionalUser.get();
             existingUser.setName(user.getName());
             existingUser.setEmail(user.getEmail());
+            existingUser.setGender(user.getGender());
+            existingUser.setAge(user.getAge());
+            existingUser.setPhoneNumber(user.getPhoneNumber());
+            existingUser.setLastname(user.getLastname());
             return userRepository.save(existingUser);
         } else {
             return null;

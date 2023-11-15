@@ -56,7 +56,7 @@ public class TripController {
         }
     }
     @GetMapping("/filter")
-    public List<TripModel> getByName(@RequestParam String origin, @RequestParam String destination, @RequestParam String date) {
+    public List<TripModel> getTripsByName (@RequestParam String origin, @RequestParam String destination, @RequestParam String date) {
         return tripService.getTripsByOriginAndDestination(origin, destination, date);
     }
 
