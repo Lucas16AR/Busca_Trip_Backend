@@ -26,6 +26,12 @@ public class UserService {
         return userRepository.save(user);
     }
 
+
+    // haceme un metodo para traer un usuario by username, solo username sin password
+    public UserModel findByUsername(String username) {
+        return userRepository.findByUsername(username).orElseThrow();
+    }
+
     public UserModel updateUser(Long id, UserModel user) {
         Optional<UserModel> optionalUser = userRepository.findById(id);
         if (optionalUser.isPresent()) {

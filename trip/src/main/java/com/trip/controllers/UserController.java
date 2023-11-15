@@ -2,6 +2,7 @@ package com.trip.controllers;
 
 import com.trip.models.UserModel;
 import com.trip.services.UserService;
+import com.trip.Auth.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +32,19 @@ public class UserController {
             return ResponseEntity.status(201).body("User added successfully with ID: " + savedUser.getId());
         } else {
             return ResponseEntity.status(400).body("Failed to add user.");
+        }
+    }
+
+
+
+    // haceme un metodo para traer un usuario by username, solo username sin password
+    @GetMapping("/username/{username}")
+    public ResponseEntity<UserModel> getUserByUsername(@PathVariable("username") String username) {
+        UserModel user = userService.findByUsername(username);
+        if (user != null) {
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.notFound().build();
         }
     }
 
