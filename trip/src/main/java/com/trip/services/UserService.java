@@ -1,0 +1,54 @@
+package com.trip.services;
+
+import com.trip.models.UserModel;
+import com.trip.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class UserService {
+
+    private UserRepository userRepository;
+
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public List<UserModel> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    public UserModel addUser(UserModel user) {
+        return userRepository.save(user);
+    }
+
+
+    // haceme un metodo para traer un usuario by username, solo username sin password
+    public UserModel findByUsername(String username) {
+        return userRepository.findByUsername(username).orElseThrow();
+    }
+
+    public UserModel updateUser(Long id, UserModel user) {
+        Optional<UserModel> optionalUser = userRepository.findById(id);
+        if (optionalUser.isPresent()) {
+            UserModel existingUser = optionalUser.get();
+            existingUser.setName(user.getName());
+            existingUser.setEmail(user.getEmail());
+            return userRepository.save(existingUser);
+        } else {
+            return null;
+        }
+    }
+
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
+    }
+
+    public UserModel getUser(Long id) {
+        return userRepository.findById(id).orElse(null);
+    }
+}
