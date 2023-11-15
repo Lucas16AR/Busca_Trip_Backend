@@ -35,4 +35,3 @@ public class CompanyModel implements Serializable {
     private String name;
 
 }
-    

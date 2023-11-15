@@ -38,4 +38,5 @@ public class VehicleModel implements Serializable {
     @ManyToOne
     @JoinColumn(name = "company_id")
     private CompanyModel company;
+  
 }
