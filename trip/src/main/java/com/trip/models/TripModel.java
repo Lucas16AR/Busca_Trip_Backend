@@ -1,7 +1,7 @@
 package com.trip.models;
 
-// import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 import jakarta.persistence.*;
 import jakarta.persistence.Entity;
@@ -11,7 +11,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
-import java.util.Date;
 
 
 @Entity
@@ -25,7 +24,7 @@ public class TripModel implements Serializable {
     private Long id;
 
     @Column(name = "date")
-    private Date date;
+    private Timestamp date;
 
     @ManyToOne
     @JoinColumn(name = "user")

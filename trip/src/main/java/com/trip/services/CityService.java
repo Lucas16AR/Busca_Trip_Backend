@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 //import java.util.Optional;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 @Service
 public class CityService {
@@ -49,4 +49,9 @@ public class CityService {
 
     public void deleteById(Long id) {
     }
+
+    public CityModel getCityByName(String name) {
+        return cityRepository.findByName(name);
+    }
+
 }

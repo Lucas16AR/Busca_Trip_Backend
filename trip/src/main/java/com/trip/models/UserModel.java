@@ -1,8 +1,5 @@
 package com.trip.models;
 
-import java.io.Serializable;
-//import javax.persistence.*;
-//import java.util.List;
 import java.util.Collection;
 import java.util.List;
 
@@ -19,7 +16,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import jakarta.persistence.Id;
-//import jakarta.persistence.JoinTable;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.UniqueConstraint;
@@ -28,7 +24,6 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 
 import jakarta.persistence.Column;
-// import jakarta.persistence.ManyToMany;
 
 @Entity
 @Builder

@@ -17,10 +17,12 @@ import java.util.Optional;
 @RequestMapping("/vehicle")
 public class VehicleController {
 
+    @Autowired
     private VehicleService vehicleService;
-    private CompanyService companyService;
 
     @Autowired
+    private CompanyService companyService;
+
     public VehicleController(VehicleService vehicleService, CompanyService companyService) {
         this.vehicleService = vehicleService;
         this.companyService = companyService;

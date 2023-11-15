@@ -11,9 +11,9 @@ import java.util.Optional;
 @Service
 public class UserService {
 
+    @Autowired
     private UserRepository userRepository;
 
-    @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -38,6 +38,10 @@ public class UserService {
             UserModel existingUser = optionalUser.get();
             existingUser.setName(user.getName());
             existingUser.setEmail(user.getEmail());
+            existingUser.setGender(user.getGender());
+            existingUser.setAge(user.getAge());
+            existingUser.setPhoneNumber(user.getPhoneNumber());
+            existingUser.setLastname(user.getLastname());
             return userRepository.save(existingUser);
         } else {
             return null;

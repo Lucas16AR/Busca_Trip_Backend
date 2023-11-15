@@ -13,9 +13,9 @@ import java.util.List;
 @RequestMapping("/trip")
 public class TripController {
 
+    @Autowired
     private TripService tripService;
 
-    @Autowired
     public TripController(TripService tripService) {
         this.tripService = tripService;
     }
@@ -55,6 +55,11 @@ public class TripController {
             return ResponseEntity.notFound().build();
         }
     }
+    @GetMapping("/filter")
+    public List<TripModel> getTripsByName (@RequestParam String origin, @RequestParam String destination, @RequestParam String date) {
+        return tripService.getTripsByOriginAndDestination(origin, destination, date);
+    }
+
 }
 
 
